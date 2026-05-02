@@ -1,7 +1,6 @@
 name: Build Llama for Android
 on: [push, workflow_dispatch]
 
-# Убираем предупреждения о Node.js
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
@@ -14,14 +13,14 @@ jobs:
         with:
           repository: ggerganov/llama.cpp
           ref: master
-          fetch-depth: 1 # Ускоряет загрузку
+          fetch-depth: 1
 
       - name: Set up Android NDK
         uses: nttld/setup-ndk@v1
         with:
           ndk-version: r26b
 
-     - name: Configure and Build
+      - name: Configure and Build
         run: |
           mkdir build-android
           cd build-android
@@ -44,6 +43,3 @@ jobs:
         with:
           name: libllama-android-arm64
           path: build-android/src/libllama.so
-
-
-

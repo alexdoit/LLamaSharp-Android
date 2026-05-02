@@ -36,11 +36,13 @@ jobs:
             -DGGML_BACKEND_DL=ON \
             -DGGML_CPU_ALL_VARIANTS=ON
           
-          cmake --build . --config Release --target llama --parallel $(nproc)
+          # Собираем всё без указания конкретного target, чтобы получить все библиотеки
+          cmake --build . --config Release --parallel $(nproc)
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: libllama-android-arm64
-          path: build-android/**/libllama.so
+          # Собираем все скомпилированные библиотеки .so
+          path: build-android/**/*.so
           if-no-files-found: error

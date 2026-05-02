@@ -13,8 +13,7 @@
 ```csharp
 #if ANDROID
 LLama.Native.NativeLibraryConfig.Instance
-    .WithLibrary("libllama.so")
-    .WithLogs(true);
+    .WithLibrary("libllama.so", "libmtmd.so"); 
 #endif
 
 Особенности сборки:
